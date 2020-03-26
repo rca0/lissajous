@@ -12,7 +12,7 @@ import (
 )
 
 var palette = []color.Color{
-	color.White,
+	color.RGBA{255, 0, 0, 255},
 	color.Black,
 }
 
