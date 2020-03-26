@@ -1,0 +1,2 @@
+# lissajous
+Generates gif animations
