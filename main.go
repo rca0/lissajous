@@ -5,9 +5,10 @@ import (
 	"image/color"
 	"image/gif"
 	"io"
+	"log"
 	"math"
 	"math/rand"
-	"os"
+	"net/http"
 	"time"
 )
 
@@ -24,7 +25,11 @@ var palette = []color.Color{
 
 func main() {
 	rand.Seed(time.Now().UTC().UnixNano())
-	lissajous(os.Stdout)
+	handler := func(w http.ResponseWriter, r *http.Request) {
+		lissajous(w)
+	}
+	http.HandleFunc("/", handler)
+	log.Fatal(http.ListenAndServe("localhost:8080", nil))
 }
 
 func lissajous(out io.Writer) {
